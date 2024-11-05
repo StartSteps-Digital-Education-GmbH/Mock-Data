@@ -88,10 +88,10 @@ npx jest
 
 #### Resources for Further Learning
 
-1. **Mocking with Jest in Typescript/Javascript**: [medium.com]([https://jestjs.io/docs/getting-started](https://medium.com/@vivek.murarka/mocking-with-jest-in-typescript-javascript-d203699cc617))
-2. **Mock Functions**: [Jest Documentation]([https://www.typescriptlang.org/docs/](https://jestjs.io/docs/mock-function-api))
-3. **Mock modules properly with Jest and Typescript**: [DEV Community]([https://github.com/axios/axios](https://dev.to/mattiz/mock-modules-properly-with-jest-and-typescript-3nao))
-4. **Mocking axios in Jest tests with Typescript**: [Web Dev & Author]([https://dev.to/benawad/testing-typescript-with-jest-4f8e](https://www.csrhymes.com/2022/03/09/mocking-axios-with-jest-and-typescript.html))
+1. **Mocking with Jest in Typescript/Javascript**: [medium.com]([https://jestjs.io/docs/getting-started](https://medium.com/@vivek.murarka/mocking-with-jest-in-typescript-javascript-d203699cc617)
+2. **Mock Functions**: [Jest Documentation]([https://www.typescriptlang.org/docs/](https://jestjs.io/docs/mock-function-api)
+3. **Mock modules properly with Jest and Typescript**: [DEV Community]([https://github.com/axios/axios](https://dev.to/mattiz/mock-modules-properly-with-jest-and-typescript-3nao)
+4. **Mocking axios in Jest tests with Typescript**: [Web Dev & Author]([https://dev.to/benawad/testing-typescript-with-jest-4f8e](https://www.csrhymes.com/2022/03/09/mocking-axios-with-jest-and-typescript.html)
 
 ### Conclusion
 
