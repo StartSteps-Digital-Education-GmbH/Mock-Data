@@ -1,4 +1,4 @@
-Sure! Below is a comprehensive guide to building a marketing platform that enables advertisers and publishers to expand their business online. This guide will cover the project description, required features, tech stack selection, and a step-by-step coding example, including user authentication, roles, and testing.
+# Live Coding
 
 ### Project Description
 
