@@ -282,6 +282,97 @@ describe('User Authentication', () => {
 });
 ```
 
+
+### Mock Data for Testing
+
+To effectively test the user authentication functionality without relying on a real database, we can use mock data. This allows us to simulate API responses and isolate our tests. Here’s how to implement mock data in the context of the marketing platform.
+
+#### Step 1: Install Additional Dependencies
+
+If you haven't already, install `supertest` for testing HTTP requests:
+
+```bash
+npm install --save-dev supertest
+```
+
+#### Step 2: Create Mock Data
+
+In your test file `src/tests/user.test.ts`, you can create mock data for testing user registration and login. Here’s how to do it:
+
+```typescript
+import request from 'supertest';
+import { createConnection, getConnection } from 'typeorm';
+import { User } from '../models/User';
+import app from '../server'; // Adjust the import based on your server setup
+
+// Mock data
+const mockUser = {
+  email: 'mockuser@example.com',
+  password: 'mockpassword123',
+};
+
+describe('User Authentication', () => {
+  beforeAll(async () => {
+    await createConnection(); // Ensure the database connection is established
+  });
+
+  afterAll(async () => {
+    await getConnection().close(); // Close the connection after tests
+  });
+
+  it('should register a new user', async () => {
+    const response = await request(app)
+      .post('/api/users/register')
+      .send(mockUser);
+    expect(response.status).toBe(201);
+    expect(response.body.message).toBe('User registered successfully');
+  });
+
+  it('should login the user', async () => {
+    // First, register the user
+    await request(app)
+      .post('/api/users/register')
+      .send(mockUser);
+
+    // Now, attempt to log in
+    const response = await request(app)
+      .post('/api/users/login')
+      .send({
+        email: mockUser.email,
+        password: mockUser.password,
+      });
+    expect(response.status).toBe(200);
+    expect(response.body.token).toBeDefined();
+  });
+
+  it('should not login with incorrect password', async () => {
+    const response = await request(app)
+      .post('/api/users/login')
+      .send({
+        email: mockUser.email,
+        password: 'wrongpassword',
+      });
+    expect(response.status).toBe(401);
+    expect(response.body.message).toBe('Invalid credentials');
+  });
+});
+```
+
+### Explanation of Mock Data Usage
+
+1. **Mock User Data**: 
+   - We define a `mockUser` object that contains the email and password we will use for testing. This simulates a user that we can register and log in.
+
+2. **Testing Registration**:
+   - The first test case registers the mock user by sending a POST request to the `/api/users/register` endpoint. We check that the response status is 201 (Created) and that the success message is returned.
+
+3. **Testing Login**:
+   - The second test case first registers the mock user and then attempts to log in with the same credentials. We expect a 200 status and a defined token in the response.
+
+4. **Testing Invalid Login**:
+   - The third test case checks the behavior when an incorrect password is provided. We expect a 401 status and an appropriate error message.
+
+
 ### Running the Application
 
 1. **Create the Database**:
